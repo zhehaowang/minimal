@@ -51,6 +51,11 @@
                             {{ end }}
                         </ul>
                     {{ end }}
+
+                    {{ if .Site.Params.SearchOn | default false }}
+                        {{ partial "search-bar" . }}
+                    {{ end }}
+
                     {{ if .Site.Menus.icon }}
                         <ul class="nav navbar-nav navbar-right">
                             {{ range sort .Site.Menus.icon }}
