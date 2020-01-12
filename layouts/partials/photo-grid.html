@@ -1,0 +1,109 @@
+<!-- custom inclusion for photo grid -->
+
+<!-- https://github.com/nitinhayaran/Justified.js -->
+
+<link rel="stylesheet" href="/css/jquery.justified.css">
+<script src="/js/jquery.justified.min.js"></script>
+
+<script>
+    var showPhotos = function(destination, photos){
+        $(destination).empty().justifiedImages({
+            images : photos,
+            // rowHeight: $('#minHeight').val(),
+            // maxRowHeight: $('#maxHeight').val(),
+            rowHeight: 300,
+            maxRowHeight: 600,
+            thumbnailPath: function(photo, width, height){
+                return photo.src;
+            },
+            getSize: function(photo){
+                return {width: photo.width, height: photo.height};
+            },
+            margin: 2/*,
+            appendBlocks: function(){
+                return [{
+                    rowNum : 1,
+                    width : 150,
+                    html : '<a href="#">Add Photo</a>'
+                },{
+                    rowNum : -1,
+                    width : 150,
+                    html : '<a href="#">Add Last Photo</a>'
+                }]
+            }*/
+        });
+    };
+
+    $(document).ready(function(){
+        // @todo(zwang): automate, ideally pull in from gallery.md, which is populated from google photos python pipeline
+        // ls -l /Users/zhehaowang/projects/me.hugoify/generated/static/gallery/new_york | tr -s " " | cut -d" " -f 9 | while read x; do echo "\"/gallery/new_york/$x\","; done
+        // alternatively we could do an ls in Node, connecting node with Hugo might be worthwhile
+        var nyImgPaths = [
+            "/gallery/new_york/DSC00347.jpg",
+            "/gallery/new_york/DSC00503.jpg",
+            "/gallery/new_york/DSC01636-Edit.jpg",
+            "/gallery/new_york/DSC02710-Edit.jpg",
+            "/gallery/new_york/DSC02889-Edit.jpg",
+            "/gallery/new_york/DSC02942-Edit.jpg",
+            "/gallery/new_york/graffiti.jpg",
+            "/gallery/new_york/manhattan-skyline-hoboken.jpg",
+            "/gallery/new_york/midtown-iso-too-high.jpg"
+        ];
+
+        var chinaPaths = [
+            "/gallery/china_2019/DSC08335-Edit.jpg",
+            "/gallery/china_2019/DSC08748.jpg",
+            "/gallery/china_2019/IMG_20191203_194624.jpg",
+            "/gallery/china_2019/IMG_20191221_203641_426.jpg",
+            "/gallery/china_2019/couple-on-jingshan.jpg",
+            "/gallery/china_2019/lions-head.jpg",
+            "/gallery/china_2019/ministry-of-truth.jpg"
+        ];
+
+        var turkeyPaths = [
+            "/gallery/turkey/00100lPORTRAIT_00100_BURST20190919231408216_COVER.jpg",
+            "/gallery/turkey/IMG_20190923_004957_777.jpg",
+            "/gallery/turkey/IMG_20191006_141200_173.jpg",
+            "/gallery/turkey/balloons-2.jpg",
+            "/gallery/turkey/balloons-4.jpg",
+            "/gallery/turkey/cappadocian-rose-2.jpg",
+            "/gallery/turkey/cats.jpg",
+            "/gallery/turkey/crossroads-of-the-old-world.jpg",
+            "/gallery/turkey/dog-biting-stone.jpg",
+            "/gallery/turkey/duden-waterfall-night.jpg",
+            "/gallery/turkey/fisherman-and-fish.jpg",
+            "/gallery/turkey/galata-tower.jpg",
+            "/gallery/turkey/hagia-sophia-night.jpg",
+            "/gallery/turkey/isimsiz.jpg",
+            "/gallery/turkey/lamps-of-istanbul.jpg",
+            "/gallery/turkey/maiden-tower-night.jpg",
+            "/gallery/turkey/spices-grand-bazaar.jpg",
+            "/gallery/turkey/umbrella-street-karakoy.jpg"
+        ];
+
+        function populateSection(destination, imgPaths) {
+            var imagesLoaded = 0;
+            var imgs = [];
+            for (var i=0; i < imgPaths.length; i++){
+                let img = new Image();
+                img.src = imgPaths[i];
+                imgs.push(img);
+                img.onload = function(){
+                    imagesLoaded++;
+                    if(imagesLoaded == imgPaths.length){
+                        allLoaded();
+                    }
+                }
+            }
+
+            function allLoaded(){
+                console.log(imgs.length);
+                showPhotos(destination, imgs);
+            }
+        }
+
+        populateSection('#new_york', nyImgPaths);
+        populateSection('#turkey', turkeyPaths);
+        populateSection('#china', chinaPaths);
+    });
+</script>

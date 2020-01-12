@@ -1,0 +1,29 @@
+{{ partial "header" . }}
+
+{{ partial "photo-grid" . }}
+
+<main>
+    <div>
+        <h2>{{ .Title }}</h2>
+        <h5>{{ .Description }}</h5>
+        {{ partial "tags" . }}
+    </div>
+
+    <div align="start" class="content">{{ .Content }}</div>
+
+</main>
+
+<!-- @todo(zwang): automate this! -->
+
+<h1>United States</h1>
+<div id="new_york" class="image-container"></div>
+<br>
+
+<h1>Turkey</h1>
+<div id="turkey" class="image-container"></div>
+<br>
+
+<h1>China</h1>
+<div id="china" class="image-container"></div>
+
+{{ partial "footer" . }}
