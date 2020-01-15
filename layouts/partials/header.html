@@ -53,7 +53,13 @@
                     {{ end }}
 
                     {{ if .Site.Params.SearchOn | default false }}
-                        {{ partial "search-bar" . }}
+                        <div class="nav navbar-nav col-lg-3">
+                            <form class="navbar-form" role="search">
+                                <div class="input-group">
+                                    {{ partial "search-bar" . }}
+                                </div>
+                            </form>
+                        </div>
                     {{ end }}
 
                     {{ if .Site.Menus.icon }}
