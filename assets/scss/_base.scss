@@ -98,7 +98,10 @@ main{
   flex: 1;
   // override page main
   max-width: 1024px;
-  // margin: unset;
+  // magic
+  @media screen and (max-width: 42rem){
+    margin: unset;
+  }
   padding: 0px;
 }
 ul{
