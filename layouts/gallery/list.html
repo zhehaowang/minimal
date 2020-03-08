@@ -18,7 +18,7 @@
         {{ end }}
         {{ $image := $scratch.Get "image" }}
         {{ $bg := (absURL (printf "%s" $image)) }}
-        <article {{ if eq $index 0 }} class = 'article mb-2' {{ else }} class = 'article' {{ end }}>
+        <article class = 'article mb-2'>
             <div {{ if eq $index 0 }} class = 'grid-reverse' {{ end }}>
                 <div class = 'article_thumb' style='background-image: url({{ $bg }})'></div>
                 <div class = 'article_meta {{ if eq $index 0 }} center_y {{ end }}'>
