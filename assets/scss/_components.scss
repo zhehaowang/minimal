@@ -18,7 +18,7 @@
     transform-origin: bottom;
   }
   &_meta{
-    padding: 10px 1.25rem 1.25rem;
+    padding: 10px 1.25rem 0.25rem;
     background: var(--bg);
     color: var(--text);
     position: relative;
@@ -45,7 +45,7 @@
     background-position: 50% 50%;
     @media screen and (min-width: 35rem) {
       // magic
-      height: 54rem;
+      height: 55rem;
     }
     img{
       transition: transform 0.5s, opacity 0.5s;
@@ -64,7 +64,7 @@
     }
   }
   &_showcase &_thumb {
-    height: 27rem;
+    height: 30rem;
   }
   &_showcase &_meta {
     padding-top: 1.5rem;
